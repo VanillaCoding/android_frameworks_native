@@ -92,8 +92,8 @@ void SensorService::onFirstRef()
 
             mLastEventSeen.setCapacity(count);
             for (ssize_t i=0 ; i<count ; i++) {
-                registerSensor( new HardwareSensor(list[i]) );
                 switch (list[i].type) {
+                         registerSensor( new HardwareSensor(list[i]) );
                     case SENSOR_TYPE_ACCELEROMETER:
                         hasAccel = true;
                         break;
@@ -113,6 +113,7 @@ void SensorService::onFirstRef()
                         virtualSensorsNeeds &= ~(1<<list[i].type);
                         break;
                 }
+              }
             }
 
             // it's safe to instantiate the SensorFusion object here
